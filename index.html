@@ -1,0 +1,2308 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vibrance — Landing Pages Profissionais</title>
+  <meta name="description" content="Landing pages profissionais, estratégicas e prontas para gerar contatos para profissionais liberais e empresas locais." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #000000;
+      --black-soft: #080808;
+      --black-card: #0c0c0c;
+      --black-panel: #111111;
+      --border: rgba(255,255,255,0.07);
+      --border-hover: rgba(123,57,252,0.4);
+      --purple: #7b39fc;
+      --purple-soft: rgba(123,57,252,0.15);
+      --purple-glow: rgba(123,57,252,0.3);
+      --white: #ffffff;
+      --white-90: rgba(255,255,255,0.9);
+      --white-60: rgba(255,255,255,0.6);
+      --white-35: rgba(255,255,255,0.35);
+      --white-15: rgba(255,255,255,0.15);
+      --text-primary: #f0f0f0;
+      --text-secondary: rgba(255,255,255,0.55);
+      --text-muted: rgba(255,255,255,0.35);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAVBAR ─── */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 24px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      transition: background 0.3s ease;
+    }
+
+    .navbar__logo {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .navbar__logo span { color: var(--purple); }
+
+    .navbar__nav {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .navbar__nav a {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--white-60);
+      text-decoration: none;
+      transition: color 0.2s;
+      letter-spacing: 0.01em;
+    }
+
+    .navbar__nav a:hover { color: var(--white); }
+
+    .navbar__cta {
+      background: var(--purple);
+      color: var(--white) !important;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 13.5px !important;
+      transition: opacity 0.2s, transform 0.2s !important;
+    }
+
+    .navbar__cta:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .navbar__hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .navbar__hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .navbar__mobile {
+      display: none;
+      position: fixed;
+      top: 68px; left: 0; right: 0;
+      background: rgba(6,6,6,0.98);
+      backdrop-filter: blur(20px);
+      padding: 24px;
+      flex-direction: column;
+      gap: 20px;
+      border-bottom: 1px solid var(--border);
+      z-index: 99;
+    }
+
+    .navbar__mobile.open { display: flex; }
+
+    .navbar__mobile a {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--white-60);
+      text-decoration: none;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .navbar__mobile a:last-child {
+      background: var(--purple);
+      color: var(--white);
+      padding: 14px 20px;
+      border-radius: 8px;
+      text-align: center;
+      border: none;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 120px 24px 80px;
+    }
+
+    .hero__video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.45;
+      z-index: 0;
+    }
+
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.85) 100%);
+      z-index: 1;
+    }
+
+    .hero__pill-bg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(700px, 90vw);
+      height: 340px;
+      background: rgba(0,0,0,0.55);
+      filter: blur(60px);
+      border-radius: 999px;
+      z-index: 2;
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      max-width: 820px;
+      width: 100%;
+    }
+
+    .hero__label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(123,57,252,0.12);
+      border: 1px solid rgba(123,57,252,0.3);
+      border-radius: 999px;
+      padding: 7px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(180,150,255,0.9);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .hero__label-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--purple);
+      animation: pulse-dot 2s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .hero__title {
+      font-size: clamp(36px, 6vw, 70px);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      margin-bottom: 22px;
+    }
+
+    .hero__title em {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 700;
+      color: transparent;
+      background: linear-gradient(135deg, #a78bfa, #7b39fc);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .hero__subtitle {
+      font-size: clamp(15px, 2vw, 18px);
+      color: var(--white-60);
+      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto 36px;
+      font-weight: 400;
+    }
+
+    .hero__actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .btn-primary {
+      background: var(--purple);
+      color: var(--white);
+      padding: 15px 28px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 30px rgba(123,57,252,0.4);
+      border: none;
+      cursor: pointer;
+      min-height: 52px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 45px rgba(123,57,252,0.6);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.06);
+      color: var(--white-90);
+      padding: 15px 28px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(255,255,255,0.12);
+      transition: background 0.2s, border-color 0.2s;
+      min-height: 52px;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    .hero__trust {
+      font-size: 13px;
+      color: var(--white-35);
+      letter-spacing: 0.02em;
+    }
+
+    .hero__dashboard {
+      position: relative;
+      z-index: 3;
+      margin-top: 60px;
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .hero__dashboard-inner {
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 40px 120px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.05);
+    }
+
+    .hero__dashboard-bar {
+      background: rgba(255,255,255,0.03);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero__dashboard-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .hero__dashboard-content {
+      padding: 28px 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    .dash-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .dash-card__label {
+      font-size: 11px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .dash-card__value {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+
+    .dash-card__value span { color: var(--purple); }
+
+    .dash-card__sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .dash-bar-wrap { margin-top: 12px; }
+
+    .dash-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-bottom: 5px;
+    }
+
+    .dash-bar-track {
+      height: 4px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .dash-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--purple), #a78bfa);
+      border-radius: 999px;
+      width: 0;
+      transition: width 1.5s ease;
+    }
+
+    /* ─── SECTIONS SHARED ─── */
+    section {
+      padding: 100px 24px;
+      position: relative;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
+
+    .section-label::before {
+      content: "";
+      width: 16px;
+      height: 1px;
+      background: var(--purple);
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      margin-bottom: 18px;
+    }
+
+    .section-title em {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 700;
+      color: transparent;
+      background: linear-gradient(135deg, #a78bfa, #7b39fc);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .section-intro {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 600px;
+      margin-bottom: 56px;
+    }
+
+    .text-center { text-align: center; }
+    .text-center .section-intro { margin-left: auto; margin-right: auto; }
+    .text-center .section-label { justify-content: center; }
+
+    /* ─── PROBLEM ─── */
+    .problem { background: var(--black-soft); }
+
+    .problem__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .problem-card {
+      background: var(--black-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 28px;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .problem-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 0;
+      background: var(--purple);
+      transition: height 0.4s ease;
+    }
+
+    .problem-card:hover::before { height: 100%; }
+
+    .problem-card:hover {
+      border-color: rgba(123,57,252,0.25);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    .problem-card__num {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--purple);
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+      opacity: 0.7;
+    }
+
+    .problem-card__title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .problem-card__text {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ─── SOLUTION ─── */
+    .solution { background: var(--black); }
+
+    .solution__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .solution-card {
+      background: var(--black-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 24px;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+
+    .solution-card:hover {
+      border-color: rgba(123,57,252,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(123,57,252,0.08);
+    }
+
+    .solution-card__icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 18px;
+    }
+
+    .solution-card__icon img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+    }
+
+    .solution-card__title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .solution-card__text {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    .solution__cta { text-align: center; }
+
+    /* ─── DIFFERENTIALS ─── */
+    .differentials { background: var(--black-soft); }
+
+    .differentials__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .diff-card {
+      background: var(--black-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px 32px;
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .diff-card:hover {
+      border-color: rgba(123,57,252,0.3);
+      box-shadow: 0 0 40px rgba(123,57,252,0.06);
+    }
+
+    .diff-card__num {
+      font-size: 36px;
+      font-weight: 900;
+      color: rgba(123,57,252,0.2);
+      line-height: 1;
+      flex-shrink: 0;
+      letter-spacing: -0.03em;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .diff-card__title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .diff-card__text {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ─── TESTIMONIALS ─── */
+    .testimonials { background: var(--black); }
+
+    .testimonials__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .testimonial-card {
+      background: var(--black-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px 28px;
+      transition: border-color 0.3s, transform 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .testimonial-card:hover {
+      border-color: rgba(123,57,252,0.2);
+      transform: translateY(-4px);
+    }
+
+    .testimonial-card__stars {
+      font-size: 14px;
+      color: #f59e0b;
+      letter-spacing: 2px;
+      margin-bottom: 18px;
+    }
+
+    .testimonial-card__text {
+      font-size: 14.5px;
+      color: var(--white-60);
+      line-height: 1.75;
+      flex: 1;
+      font-style: italic;
+      margin-bottom: 24px;
+    }
+
+    .testimonial-card__author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .testimonial-card__avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), #a78bfa);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+
+    .testimonial-card__name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .testimonial-card__role {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* ─── PORTFOLIO ─── */
+    .portfolio { background: var(--black-soft); }
+
+    .portfolio__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .portfolio-card {
+      background: var(--black-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .portfolio-card:hover {
+      border-color: rgba(123,57,252,0.3);
+      transform: translateY(-4px);
+    }
+
+    .portfolio-card__preview {
+      height: 200px;
+      background: linear-gradient(135deg, #0d0d14, #12101e);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .portfolio-card__preview-inner {
+      width: 75%;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px;
+      padding: 16px;
+    }
+
+    .preview-bar {
+      height: 6px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+
+    .preview-bar:last-child { margin-bottom: 0; }
+
+    .portfolio-card__preview-glow {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: var(--purple-glow);
+      filter: blur(50px);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .portfolio-card__info {
+      padding: 22px 24px;
+    }
+
+    .portfolio-card__tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 8px;
+      opacity: 0.8;
+    }
+
+    .portfolio-card__title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .portfolio-card__sub {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    /* ─── PRICING ─── */
+    .pricing { background: var(--black); }
+
+    .pricing__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    .price-card {
+      background: var(--black-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px 36px;
+      transition: border-color 0.3s;
+      position: relative;
+    }
+
+    .price-card--featured {
+      border-color: rgba(123,57,252,0.5);
+      background: linear-gradient(160deg, #0d0a18, #0c0c0c);
+      box-shadow: 0 0 60px rgba(123,57,252,0.12);
+    }
+
+    .price-card__badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--purple);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .price-card__title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .price-card__desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .price-card__price {
+      font-size: 48px;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .price-card__price span {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .price-card__once {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+
+    .price-card__divider {
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 24px;
+    }
+
+    .price-card__features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .price-card__features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--white-60);
+      line-height: 1.5;
+    }
+
+    .price-card__features li::before {
+      content: "✓";
+      color: var(--purple);
+      font-weight: 800;
+      font-size: 13px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .btn-full {
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+      padding: 15px 24px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+      min-height: 52px;
+    }
+
+    .btn-full--primary {
+      background: var(--purple);
+      color: var(--white);
+      box-shadow: 0 0 30px rgba(123,57,252,0.3);
+    }
+
+    .btn-full--primary:hover {
+      box-shadow: 0 0 50px rgba(123,57,252,0.5);
+      transform: translateY(-2px);
+    }
+
+    .btn-full--outline {
+      background: transparent;
+      color: var(--white-90);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .btn-full--outline:hover {
+      border-color: rgba(123,57,252,0.4);
+      background: var(--purple-soft);
+    }
+
+    /* ─── PROCESS ─── */
+    .process { background: var(--black-soft); }
+
+    .process__steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 52px;
+      position: relative;
+    }
+
+    .process__steps::before {
+      content: "";
+      position: absolute;
+      top: 40px;
+      left: calc(16.666% + 20px);
+      right: calc(16.666% + 20px);
+      height: 1px;
+      background: linear-gradient(90deg, var(--purple), rgba(123,57,252,0.2));
+    }
+
+    .step-card {
+      background: var(--black-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px 24px;
+      text-align: center;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .step-card:hover {
+      border-color: rgba(123,57,252,0.3);
+      transform: translateY(-4px);
+    }
+
+    .step-card__num {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--purple);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--white);
+      margin: 0 auto 20px;
+      box-shadow: 0 0 20px rgba(123,57,252,0.5);
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-card__title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .step-card__text {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    .process__cta { text-align: center; }
+
+    /* ─── ABOUT ─── */
+    .about { background: var(--black); }
+
+    .about__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about__photo {
+      position: relative;
+    }
+
+    .about__photo-frame {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: linear-gradient(135deg, #0d0a18, #12101e);
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .about__photo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .about__photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+      opacity: 0.15;
+    }
+
+    .about__photo-glow {
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 80px;
+      background: var(--purple-glow);
+      filter: blur(40px);
+      border-radius: 50%;
+    }
+
+    .about__photo-badge {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 12px 20px;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .about__photo-badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      animation: pulse-dot 2s infinite;
+    }
+
+    .about__photo-badge-text {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .about__photo-badge-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .about__content { }
+
+    .about__text {
+      font-size: 15.5px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+
+    .about__support {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+    }
+
+    .about__cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .about-card {
+      background: var(--black-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 16px;
+      transition: border-color 0.3s;
+    }
+
+    .about-card:hover { border-color: rgba(123,57,252,0.3); }
+
+    .about-card__icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 10px;
+    }
+
+    .about-card__icon img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+
+    .about-card__title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .about-card__text {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ─── FAQ ─── */
+    .faq { background: var(--black-soft); }
+
+    .faq__list {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .faq-item {
+      background: var(--black-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+
+    .faq-item.open { border-color: rgba(123,57,252,0.3); }
+
+    .faq-btn {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 22px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .faq-btn:hover { background: rgba(255,255,255,0.02); }
+
+    .faq-btn__text {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--white);
+      flex: 1;
+      min-width: 0;
+      line-height: 1.4;
+    }
+
+    .faq-btn__icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: rgba(123,57,252,0.12);
+      border: 1px solid rgba(123,57,252,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.3s, background 0.3s;
+      color: var(--purple);
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1;
+    }
+
+    .faq-item.open .faq-btn__icon {
+      transform: rotate(45deg);
+      background: var(--purple-soft);
+    }
+
+    .faq-item.open .faq-btn__text { color: var(--purple); }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      padding: 0 24px;
+      border-top: 0px solid var(--border);
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 200px;
+      padding: 0 24px 22px;
+      border-top-width: 1px;
+      padding-top: 18px;
+    }
+
+    /* ─── FINAL CTA ─── */
+    .final-cta {
+      background: var(--black);
+      text-align: center;
+      padding: 120px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .final-cta__orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+
+    .final-cta__orb--1 {
+      width: 400px;
+      height: 400px;
+      background: rgba(123,57,252,0.12);
+      top: -100px;
+      left: -100px;
+    }
+
+    .final-cta__orb--2 {
+      width: 300px;
+      height: 300px;
+      background: rgba(123,57,252,0.08);
+      bottom: -80px;
+      right: -80px;
+    }
+
+    .final-cta__content { position: relative; z-index: 1; }
+
+    .final-cta__title {
+      font-size: clamp(30px, 5vw, 56px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      max-width: 760px;
+      margin: 0 auto 20px;
+    }
+
+    .final-cta__text {
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 520px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    .final-cta__actions {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 36px;
+    }
+
+    .final-cta__trust {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .trust-item::before {
+      content: "✓";
+      color: var(--purple);
+      font-weight: 800;
+      font-size: 12px;
+    }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      background: var(--black);
+      border-top: 1px solid var(--border);
+      padding: 48px 24px 32px;
+    }
+
+    .footer__inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .footer__brand { max-width: 340px; }
+
+    .footer__logo {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .footer__logo span { color: var(--purple); }
+
+    .footer__desc {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+
+    .footer__contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .footer__contact-item {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .footer__bottom {
+      max-width: 1100px;
+      margin: 32px auto 0;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer__copy {
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    /* ─── WHATSAPP FLOAT ─── */
+    .wa-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 200;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #25D366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+    }
+
+    .wa-float:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 30px rgba(37,211,102,0.6);
+    }
+
+    .wa-float svg {
+      width: 28px;
+      height: 28px;
+      fill: white;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      section { padding: 72px 20px; }
+
+      .navbar__nav { display: none; }
+      .navbar__hamburger { display: flex; }
+
+      .hero { padding: 100px 20px 60px; }
+
+      .hero__dashboard-content {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero__dashboard-content .dash-card:last-child {
+        grid-column: span 2;
+      }
+
+      .problem__grid { grid-template-columns: 1fr; }
+      .solution__grid { grid-template-columns: 1fr 1fr; }
+      .differentials__grid { grid-template-columns: 1fr; }
+      .testimonials__grid { display: none !important; }
+      .portfolio__grid { display: none !important; }
+      .mobile-carousel { display: block !important; }
+      .pricing__grid { grid-template-columns: 1fr; max-width: 480px; }
+      .process__steps { grid-template-columns: 1fr; }
+      .process__steps::before { display: none; }
+      .about__inner { grid-template-columns: 1fr; gap: 40px; }
+      .about__photo-frame { aspect-ratio: 4/3; max-height: 300px; max-width: 360px; margin: 0 auto; }
+      .about__photo-img { object-position: center center; }
+      .about__cards { grid-template-columns: 1fr; }
+
+      .diff-card { flex-direction: column; gap: 12px; }
+      .diff-card__num { font-size: 28px; }
+    }
+
+    @media (max-width: 600px) {
+      .navbar { padding: 0 16px; }
+      section { padding: 60px 16px; }
+      .hero { padding: 88px 16px 50px; }
+
+      .hero__title { font-size: 32px; letter-spacing: -0.02em; }
+      .hero__subtitle { font-size: 15px; }
+
+      .hero__actions { flex-direction: column; gap: 10px; }
+      .hero__actions .btn-primary,
+      .hero__actions .btn-secondary { width: 100%; justify-content: center; }
+
+      .hero__dashboard-content {
+        grid-template-columns: 1fr;
+        padding: 16px;
+        gap: 10px;
+      }
+
+      .hero__dashboard-content .dash-card:last-child { grid-column: span 1; }
+
+      .section-title { font-size: 26px; }
+      .solution__grid { grid-template-columns: 1fr; }
+
+      .final-cta__title { font-size: 28px; }
+      .final-cta__trust { flex-direction: column; align-items: center; gap: 12px; }
+
+      .footer__inner { flex-direction: column; }
+      .footer__bottom { flex-direction: column; text-align: center; }
+
+      .price-card { padding: 28px 22px; }
+      .price-card__price { font-size: 40px; }
+    }
+
+    /* ─── MOBILE CAROUSEL ─── */
+    .mobile-carousel {
+      display: none; /* shown only in mobile media queries below */
+      position: relative;
+      overflow: hidden;
+      margin-top: 36px;
+    }
+
+    .mobile-carousel__track {
+      display: flex;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      gap: 0;
+    }
+
+    .mobile-carousel__slide {
+      min-width: 100%;
+      padding: 0 4px;
+      box-sizing: border-box;
+      transition: filter 0.4s ease, opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .mobile-carousel__slide.inactive {
+      filter: blur(4px);
+      opacity: 0.3;
+      transform: scale(0.96);
+    }
+
+    .mobile-carousel__dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .mobile-carousel__dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+      padding: 0;
+    }
+
+    .mobile-carousel__dot.active {
+      background: var(--purple);
+      width: 20px;
+      border-radius: 999px;
+    }
+
+    .mobile-carousel__arrows {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .mobile-carousel__arrow {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(123,57,252,0.12);
+      border: 1px solid rgba(123,57,252,0.25);
+      color: var(--purple);
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .mobile-carousel__arrow:hover {
+      background: rgba(123,57,252,0.25);
+      border-color: rgba(123,57,252,0.5);
+    }
+
+    /* ─── ANIMATIONS ─── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar" id="navbar">
+    <a href="#" class="navbar__logo">Vibrance<span>.</span></a>
+    <nav class="navbar__nav">
+      <a href="#problema">Problema</a>
+      <a href="#solucao">Solução</a>
+      <a href="#portfolio">Portfólio</a>
+      <a href="#opcoes">Opções</a>
+      <a href="https://wa.me/5541995524570?text=Olá! Quero saber mais sobre as landing pages." target="_blank" class="navbar__cta">Falar no WhatsApp</a>
+    </nav>
+    <div class="navbar__hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </header>
+
+  <nav class="navbar__mobile" id="mobileMenu">
+    <a href="#problema" onclick="toggleMenu()">Problema</a>
+    <a href="#solucao" onclick="toggleMenu()">Solução</a>
+    <a href="#portfolio" onclick="toggleMenu()">Portfólio</a>
+    <a href="#opcoes" onclick="toggleMenu()">Opções</a>
+    <a href="https://wa.me/5541995524570?text=Olá! Quero saber mais sobre as landing pages." target="_blank">Falar no WhatsApp</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <video class="hero__video" autoplay muted loop playsinline>
+      <source src="video background do Hero.mp4" type="video/mp4" />
+    </video>
+    <div class="hero__overlay"></div>
+    <div class="hero__pill-bg"></div>
+
+    <div class="hero__content">
+      <div class="hero__label">
+        <div class="hero__label-dot"></div>
+        Landing Pages Profissionais
+      </div>
+      <h1 class="hero__title">
+        Sua empresa com<br />
+        <em>presença profissional</em><br />
+        na internet ainda esta semana
+      </h1>
+      <p class="hero__subtitle">Landing pages profissionais, estratégicas e prontas para gerar contatos para profissionais liberais e empresas locais que precisam de mais visibilidade, mais credibilidade e mais clientes.</p>
+      <div class="hero__actions">
+        <a href="https://wa.me/5541995524570?text=Olá! Quero saber mais sobre as landing pages." target="_blank" class="btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.55 4.1 1.516 5.827L.057 23.62a.75.75 0 0 0 .923.923l5.792-1.459A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.738 9.738 0 0 1-4.978-1.367l-.356-.212-3.693.931.949-3.594-.232-.369A9.712 9.712 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+          Falar no WhatsApp
+        </a>
+        <a href="#opcoes" class="btn-secondary">
+          Ver opções
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <p class="hero__trust">Atendimento em Curitiba/PR e projetos para todo o Brasil</p>
+    </div>
+
+    <div class="hero__dashboard fade-up">
+      <div class="hero__dashboard-inner">
+        <div class="hero__dashboard-bar">
+          <div class="hero__dashboard-dot" style="background:#ff5f57"></div>
+          <div class="hero__dashboard-dot" style="background:#febc2e"></div>
+          <div class="hero__dashboard-dot" style="background:#28c840"></div>
+        </div>
+        <div class="hero__dashboard-content">
+          <div class="dash-card">
+            <div class="dash-card__label">Visitantes</div>
+            <div class="dash-card__value"><span>+</span>2.4k</div>
+            <div class="dash-card__sub">Últimos 30 dias</div>
+            <div class="dash-bar-wrap">
+              <div class="dash-bar-label"><span>Google</span><span>+247%</span></div>
+              <div class="dash-bar-track"><div class="dash-bar-fill" style="--w:92%"></div></div>
+            </div>
+          </div>
+          <div class="dash-card">
+            <div class="dash-card__label">Contatos WhatsApp</div>
+            <div class="dash-card__value"><span>+</span>189<span style="font-size:16px;color:var(--text-muted)">%</span></div>
+            <div class="dash-card__sub">vs. mês anterior</div>
+            <div class="dash-bar-wrap">
+              <div class="dash-bar-label"><span>Taxa de conv.</span><span>8.3%</span></div>
+              <div class="dash-bar-track"><div class="dash-bar-fill" style="--w:76%"></div></div>
+            </div>
+          </div>
+          <div class="dash-card">
+            <div class="dash-card__label">Posição Google</div>
+            <div class="dash-card__value">Top <span>3</span></div>
+            <div class="dash-card__sub">Palavra-chave principal</div>
+            <div class="dash-bar-wrap">
+              <div class="dash-bar-label"><span>Visibilidade</span><span>Alto</span></div>
+              <div class="dash-bar-track"><div class="dash-bar-fill" style="--w:88%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="problem" id="problema">
+    <div class="container">
+      <div class="section-label">O Problema</div>
+      <h2 class="section-title">Sem uma página profissional, muitos clientes<br /><em>saem antes mesmo de falar com você</em></h2>
+      <p class="section-intro">Hoje, o cliente pesquisa, compara e decide rápido. Se a sua empresa não transmite confiança de imediato, a chance de perder oportunidades aumenta todos os dias.</p>
+      <div class="problem__grid">
+        <div class="problem-card fade-up">
+          <div class="problem-card__num">01</div>
+          <div class="problem-card__title">Sua empresa não transmite a imagem que deveria</div>
+          <div class="problem-card__text">Mesmo prestando um bom serviço, muitos negócios passam uma impressão fraca na internet por não terem uma página profissional.</div>
+        </div>
+        <div class="problem-card fade-up">
+          <div class="problem-card__num">02</div>
+          <div class="problem-card__title">O cliente entra no Instagram, mas não encontra clareza</div>
+          <div class="problem-card__text">Redes sociais ajudam, mas não organizam sua oferta da forma certa. Isso dificulta o entendimento e reduz o interesse.</div>
+        </div>
+        <div class="problem-card fade-up">
+          <div class="problem-card__num">03</div>
+          <div class="problem-card__title">Falta uma estrutura pensada para gerar contato</div>
+          <div class="problem-card__text">Sem uma landing page estratégica, o visitante se dispersa, não entende o diferencial e sai sem chamar no WhatsApp.</div>
+        </div>
+        <div class="problem-card fade-up">
+          <div class="problem-card__num">04</div>
+          <div class="problem-card__title">Você perde credibilidade para concorrentes mais bem apresentados</div>
+          <div class="problem-card__text">Muitas vezes o concorrente fecha primeiro não porque é melhor, mas porque parece mais profissional.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTION -->
+  <section class="solution" id="solucao">
+    <div class="container text-center">
+      <div class="section-label">A Solução</div>
+      <h2 class="section-title">Uma landing page certa melhora sua imagem<br />e <em>facilita a geração de contatos</em></h2>
+      <p class="section-intro">Mais do que um site bonito, sua página precisa transmitir valor, organizar sua oferta e conduzir o visitante até a ação.</p>
+      <div class="solution__grid">
+        <div class="solution-card fade-up">
+          <div class="solution-card__icon"><img src="icon-presenca.png" alt="Presença profissional" /></div>
+          <div class="solution-card__title">Presença profissional</div>
+          <div class="solution-card__text">Sua empresa passa a ter uma apresentação muito mais forte, organizada e confiável.</div>
+        </div>
+        <div class="solution-card fade-up">
+          <div class="solution-card__icon"><img src="icon-credibilidade.png" alt="Mais credibilidade" /></div>
+          <div class="solution-card__title">Mais credibilidade</div>
+          <div class="solution-card__text">Um visual premium aumenta a confiança do cliente logo nos primeiros segundos.</div>
+        </div>
+        <div class="solution-card fade-up">
+          <div class="solution-card__icon"><img src="icon-clareza.png" alt="Mais clareza na oferta" /></div>
+          <div class="solution-card__title">Mais clareza na oferta</div>
+          <div class="solution-card__text">A página mostra o que você faz, para quem faz e por que vale a pena entrar em contato.</div>
+        </div>
+        <div class="solution-card fade-up">
+          <div class="solution-card__icon"><img src="icon-trafego.png" alt="Estrutura para tráfego pago" /></div>
+          <div class="solution-card__title">Estrutura pronta para tráfego pago</div>
+          <div class="solution-card__text">A landing page é pensada para receber visitas de anúncios e transformar esse tráfego em oportunidade.</div>
+        </div>
+        <div class="solution-card fade-up">
+          <div class="solution-card__icon"><img src="icon-mobile.png" alt="Foco total em mobile" /></div>
+          <div class="solution-card__title">Foco total em mobile</div>
+          <div class="solution-card__text">A maior parte dos acessos vem do celular, então a experiência mobile precisa ser impecável.</div>
+        </div>
+        <div class="solution-card fade-up">
+          <div class="solution-card__icon"><img src="icon-entrega.png" alt="Entrega prática" /></div>
+          <div class="solution-card__title">Entrega prática e sem complicação</div>
+          <div class="solution-card__text">Você envia as informações, nós montamos tudo e entregamos sua página pronta com os acessos organizados.</div>
+        </div>
+      </div>
+      <div class="solution__cta" style="margin-top:48px;">
+        <a href="https://wa.me/5541995524570?text=Olá! Quero minha landing page." target="_blank" class="btn-primary">Quero minha landing page</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFFERENTIALS -->
+  <section class="differentials" id="diferenciais">
+    <div class="container">
+      <div class="section-label">Diferenciais</div>
+      <h2 class="section-title">Uma entrega profissional, visualmente forte<br />e <em>pensada para conversão</em></h2>
+      <div class="differentials__grid" style="margin-top:48px;">
+        <div class="diff-card fade-up">
+          <div class="diff-card__num">01</div>
+          <div>
+            <div class="diff-card__title">Design premium</div>
+            <div class="diff-card__text">Páginas com visual moderno, elegante e alinhado com uma percepção de valor mais alta.</div>
+          </div>
+        </div>
+        <div class="diff-card fade-up">
+          <div class="diff-card__num">02</div>
+          <div>
+            <div class="diff-card__title">Estrutura estratégica</div>
+            <div class="diff-card__text">Cada seção é pensada para apresentar sua empresa da forma certa e facilitar o contato.</div>
+          </div>
+        </div>
+        <div class="diff-card fade-up">
+          <div class="diff-card__num">03</div>
+          <div>
+            <div class="diff-card__title">Tudo incluso</div>
+            <div class="diff-card__text">Domínio, hospedagem, configuração e entrega final já estão inclusos no valor.</div>
+          </div>
+        </div>
+        <div class="diff-card fade-up">
+          <div class="diff-card__num">04</div>
+          <div>
+            <div class="diff-card__title">Acesso total do cliente</div>
+            <div class="diff-card__text">O site é publicado no domínio e hospedagem do cliente, com tudo pronto e as senhas organizadas para entrega.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="depoimentos">
+    <div class="container text-center">
+      <div class="section-label">Depoimentos</div>
+      <h2 class="section-title">Empresas que confiaram<br />na <em>Vibrance</em></h2>
+      <!-- Mobile carousel depoimentos -->
+      <div class="mobile-carousel" id="carousel-testimonials">
+        <div class="mobile-carousel__track" id="track-testimonials">
+          <div class="mobile-carousel__slide">
+            <div class="testimonial-card">
+              <div class="testimonial-card__stars">★★★★★</div>
+              <div class="testimonial-card__text">"Fiquei muito satisfeito com o resultado. A página passou exatamente a imagem profissional que eu queria para o meu negócio."</div>
+              <div class="testimonial-card__author">
+                <div class="testimonial-card__avatar">A</div>
+                <div>
+                  <div class="testimonial-card__name">Escritório de Advocacia</div>
+                  <div class="testimonial-card__role">Advocacia • Curitiba</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mobile-carousel__slide inactive">
+            <div class="testimonial-card">
+              <div class="testimonial-card__stars">★★★★★</div>
+              <div class="testimonial-card__text">"A landing page ficou excelente e o atendimento foi muito bom do começo ao fim. Ficou tudo claro, bonito e objetivo."</div>
+              <div class="testimonial-card__author">
+                <div class="testimonial-card__avatar">O</div>
+                <div>
+                  <div class="testimonial-card__name">Clínica Odontológica</div>
+                  <div class="testimonial-card__role">Odontologia • Curitiba</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mobile-carousel__slide inactive">
+            <div class="testimonial-card">
+              <div class="testimonial-card__stars">★★★★★</div>
+              <div class="testimonial-card__text">"Precisávamos de algo profissional e rápido. A entrega foi ágil e o resultado superou nossa expectativa."</div>
+              <div class="testimonial-card__author">
+                <div class="testimonial-card__avatar">P</div>
+                <div>
+                  <div class="testimonial-card__name">Pet Shop</div>
+                  <div class="testimonial-card__role">Pet Shop & Veterinária • Curitiba</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mobile-carousel__dots" id="dots-testimonials">
+          <button class="mobile-carousel__dot active" onclick="goToSlide('testimonials',0)"></button>
+          <button class="mobile-carousel__dot" onclick="goToSlide('testimonials',1)"></button>
+          <button class="mobile-carousel__dot" onclick="goToSlide('testimonials',2)"></button>
+        </div>
+      </div>
+
+      <div class="testimonials__grid" style="margin-top:52px;">
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <div class="testimonial-card__text">"Fiquei muito satisfeito com o resultado. A página passou exatamente a imagem profissional que eu queria para o meu negócio."</div>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">A</div>
+            <div>
+              <div class="testimonial-card__name">Escritório de Advocacia</div>
+              <div class="testimonial-card__role">Advocacia • Curitiba</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <div class="testimonial-card__text">"A landing page ficou excelente e o atendimento foi muito bom do começo ao fim. Ficou tudo claro, bonito e objetivo."</div>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">O</div>
+            <div>
+              <div class="testimonial-card__name">Clínica Odontológica</div>
+              <div class="testimonial-card__role">Odontologia • Curitiba</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <div class="testimonial-card__text">"Precisávamos de algo profissional e rápido. A entrega foi ágil e o resultado superou nossa expectativa."</div>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">P</div>
+            <div>
+              <div class="testimonial-card__name">Pet Shop</div>
+              <div class="testimonial-card__role">Pet Shop & Veterinária • Curitiba</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="portfolio" id="portfolio">
+    <div class="container">
+      <div class="section-label">Portfólio</div>
+      <h2 class="section-title">Projetos desenvolvidos para<br /><em>diferentes segmentos</em></h2>
+      <p class="section-intro">Páginas criadas para profissionais liberais e empresas locais que precisam transmitir credibilidade e facilitar o contato.</p>
+      <!-- Mobile carousel portfólio -->
+      <div class="mobile-carousel" id="carousel-portfolio">
+        <div class="mobile-carousel__track" id="track-portfolio">
+          <div class="mobile-carousel__slide">
+            <div class="portfolio-card">
+              <div class="portfolio-card__preview"><img src="dentista portifolio.webp" alt="LP Odontologia" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+              <div class="portfolio-card__info">
+                <div class="portfolio-card__tag">Odontologia</div>
+                <div class="portfolio-card__title">LP Odontologia</div>
+                <div class="portfolio-card__sub">Clínica odontológica • odontologia estética</div>
+              </div>
+            </div>
+          </div>
+          <div class="mobile-carousel__slide inactive">
+            <div class="portfolio-card">
+              <div class="portfolio-card__preview"><img src="advocacia portifolio.webp" alt="LP Advocacia" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+              <div class="portfolio-card__info">
+                <div class="portfolio-card__tag">Advocacia</div>
+                <div class="portfolio-card__title">LP Advocacia</div>
+                <div class="portfolio-card__sub">Escritório de advocacia • direito civil e empresarial</div>
+              </div>
+            </div>
+          </div>
+          <div class="mobile-carousel__slide inactive">
+            <div class="portfolio-card">
+              <div class="portfolio-card__preview"><img src="pisicologa portifolio.webp" alt="LP Psicologia" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+              <div class="portfolio-card__info">
+                <div class="portfolio-card__tag">Psicologia</div>
+                <div class="portfolio-card__title">LP Psicologia</div>
+                <div class="portfolio-card__sub">Psicóloga clínica • atendimento online e presencial</div>
+              </div>
+            </div>
+          </div>
+          <div class="mobile-carousel__slide inactive">
+            <div class="portfolio-card">
+              <div class="portfolio-card__preview"><img src="personal portifolio.webp" alt="LP Personal Trainer" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+              <div class="portfolio-card__info">
+                <div class="portfolio-card__tag">Personal Trainer</div>
+                <div class="portfolio-card__title">LP Personal Trainer</div>
+                <div class="portfolio-card__sub">Treinamento online e presencial</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mobile-carousel__dots" id="dots-portfolio">
+          <button class="mobile-carousel__dot active" onclick="goToSlide('portfolio',0)"></button>
+          <button class="mobile-carousel__dot" onclick="goToSlide('portfolio',1)"></button>
+          <button class="mobile-carousel__dot" onclick="goToSlide('portfolio',2)"></button>
+          <button class="mobile-carousel__dot" onclick="goToSlide('portfolio',3)"></button>
+        </div>
+      </div>
+
+      <div class="portfolio__grid">
+        <div class="portfolio-card fade-up">
+          <div class="portfolio-card__preview">
+            <img src="dentista portifolio.webp" alt="LP Odontologia" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          </div>
+          <div class="portfolio-card__info">
+            <div class="portfolio-card__tag">Odontologia</div>
+            <div class="portfolio-card__title">LP Odontologia</div>
+            <div class="portfolio-card__sub">Clínica odontológica • odontologia estética</div>
+          </div>
+        </div>
+        <div class="portfolio-card fade-up">
+          <div class="portfolio-card__preview">
+            <img src="advocacia portifolio.webp" alt="LP Advocacia" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          </div>
+          <div class="portfolio-card__info">
+            <div class="portfolio-card__tag">Advocacia</div>
+            <div class="portfolio-card__title">LP Advocacia</div>
+            <div class="portfolio-card__sub">Escritório de advocacia • direito civil e empresarial</div>
+          </div>
+        </div>
+        <div class="portfolio-card fade-up">
+          <div class="portfolio-card__preview">
+            <img src="pisicologa portifolio.webp" alt="LP Psicologia" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          </div>
+          <div class="portfolio-card__info">
+            <div class="portfolio-card__tag">Psicologia</div>
+            <div class="portfolio-card__title">LP Psicologia</div>
+            <div class="portfolio-card__sub">Psicóloga clínica • atendimento online e presencial</div>
+          </div>
+        </div>
+        <div class="portfolio-card fade-up">
+          <div class="portfolio-card__preview">
+            <img src="personal portifolio.webp" alt="LP Personal Trainer" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          </div>
+          <div class="portfolio-card__info">
+            <div class="portfolio-card__tag">Personal Trainer</div>
+            <div class="portfolio-card__title">LP Personal Trainer</div>
+            <div class="portfolio-card__sub">Treinamento online e presencial</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing" id="opcoes">
+    <div class="container text-center">
+      <div class="section-label">Opções</div>
+      <h2 class="section-title">Escolha a opção ideal para o nível de<br /><em>presença que sua empresa precisa</em></h2>
+      <p class="section-intro">As duas opções já incluem domínio, hospedagem, publicação e entrega completa dos acessos. A diferença está no nível de apresentação e percepção de valor da página.</p>
+      <div class="pricing__grid">
+        <div class="price-card fade-up">
+          <div class="price-card__title">Landing Page Profissional</div>
+          <div class="price-card__desc">Ideal para quem quer uma página forte, bonita e bem apresentada para começar com autoridade.</div>
+          <div class="price-card__price">R$ <span style="font-size:48px;color:var(--white);font-weight:900;">697</span></div>
+          <div class="price-card__once">pagamento único</div>
+          <div class="price-card__divider"></div>
+          <ul class="price-card__features">
+            <li>Landing page profissional</li>
+            <li>Design moderno e responsivo</li>
+            <li>Estrutura estratégica para apresentação do serviço</li>
+            <li>Botão de WhatsApp integrado</li>
+            <li>Página pensada para tráfego pago</li>
+            <li>Domínio e hospedagem inclusos</li>
+            <li>Publicação no domínio do cliente</li>
+            <li>Entrega com todos os acessos organizados</li>
+          </ul>
+          <a href="https://wa.me/5541995524570?text=Olá! Tenho interesse na Landing Page Profissional." target="_blank" class="btn-full btn-full--outline">Quero esta opção</a>
+        </div>
+        <div class="price-card price-card--featured fade-up">
+          <div class="price-card__badge">Mais escolhida</div>
+          <div class="price-card__title">Landing Page Premium</div>
+          <div class="price-card__desc">Ideal para quem quer uma apresentação mais refinada, mais completa e com percepção de valor ainda mais alta.</div>
+          <div class="price-card__price">R$ <span style="font-size:48px;color:var(--white);font-weight:900;">897</span></div>
+          <div class="price-card__once">pagamento único</div>
+          <div class="price-card__divider"></div>
+          <ul class="price-card__features">
+            <li>Tudo da Landing Page Profissional</li>
+            <li>Visual mais sofisticado e mais impactante</li>
+            <li>Estrutura com seções mais refinadas</li>
+            <li>Copy mais valorizada</li>
+            <li>Apresentação mais premium da empresa</li>
+            <li>Maior percepção de autoridade</li>
+          </ul>
+          <a href="https://wa.me/5541995524570?text=Olá! Tenho interesse na Landing Page Premium." target="_blank" class="btn-full btn-full--primary">Quero esta opção</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process" id="como-funciona">
+    <div class="container text-center">
+      <div class="section-label">Como funciona</div>
+      <h2 class="section-title">Do primeiro contato à<br /><em>entrega da página pronta</em></h2>
+      <div class="process__steps" style="margin-top:52px;">
+        <div class="step-card fade-up">
+          <div class="step-card__num">1</div>
+          <div class="step-card__title">Fale com a gente</div>
+          <div class="step-card__text">Você entra em contato pelo WhatsApp e nos explica seu negócio, seu serviço e seu objetivo.</div>
+        </div>
+        <div class="step-card fade-up">
+          <div class="step-card__num">2</div>
+          <div class="step-card__title">Envie as informações</div>
+          <div class="step-card__text">Mandamos um briefing rápido para coletar as informações e alinhar a estrutura da sua página.</div>
+        </div>
+        <div class="step-card fade-up">
+          <div class="step-card__num">3</div>
+          <div class="step-card__title">Receba sua página pronta</div>
+          <div class="step-card__text">Publicamos tudo no domínio e hospedagem do cliente e entregamos os acessos organizados, com a página pronta para uso.</div>
+        </div>
+      </div>
+      <div class="process__cta">
+        <a href="https://wa.me/5541995524570?text=Olá! Quero começar minha landing page." target="_blank" class="btn-primary">Começar agora</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="sobre">
+    <div class="container">
+      <div class="about__inner">
+        <div class="about__photo fade-up">
+          <div class="about__photo-frame">
+            <img src="foto-vitor.webp" alt="Vitor — Fundador Vibrance" class="about__photo-img" />
+          </div>
+          <div class="about__photo-glow"></div>
+          <div class="about__photo-badge">
+            <div class="about__photo-badge-dot"></div>
+            <div>
+              <div class="about__photo-badge-text">Vitor</div>
+              <div class="about__photo-badge-sub">Fundador · Vibrance</div>
+            </div>
+          </div>
+        </div>
+        <div class="about__content fade-up">
+          <div class="section-label">Sobre o fundador</div>
+          <h2 class="section-title">Criamos páginas para gerar<br /><em>percepção de valor e resultado</em></h2>
+          <p class="about__text">Sou o Vitor, fundador da Vibrance. Meu foco é desenvolver landing pages que transmitam profissionalismo, reforcem a autoridade da marca e facilitem a geração de contatos. Cada projeto é feito com estratégia, atenção aos detalhes e compromisso com uma entrega rápida e bem executada.</p>
+          <p class="about__support">Atendimento em Curitiba/PR e projetos para todo o Brasil.</p>
+          <div class="about__cards">
+            <div class="about-card">
+              <div class="about-card__icon"><img src="icon-visao.png" alt="Visão" /></div>
+              <div class="about-card__title">Visão</div>
+              <div class="about-card__text">Ajudar empresas e profissionais a se posicionarem melhor no digital com páginas que realmente valorizam seus serviços.</div>
+            </div>
+            <div class="about-card">
+              <div class="about-card__icon"><img src="icon-missao.png" alt="Missão" /></div>
+              <div class="about-card__title">Missão</div>
+              <div class="about-card__text">Criar landing pages que unam design, clareza e conversão para transformar visitas em oportunidades reais.</div>
+            </div>
+            <div class="about-card">
+              <div class="about-card__icon"><img src="icon-valores.png" alt="Valores" /></div>
+              <div class="about-card__title">Valores</div>
+              <div class="about-card__text">Qualidade, transparência, agilidade e foco em resultado.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="container text-center">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-title">Perguntas <em>frequentes</em></h2>
+      <div class="faq__list" style="margin-top:48px; text-align:left;">
+
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            <span class="faq-btn__text">Em quanto tempo minha página fica pronta?</span>
+            <span class="faq-btn__icon">+</span>
+          </button>
+          <div class="faq-answer">O prazo médio de entrega é de até 7 dias após o envio completo das informações.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            <span class="faq-btn__text">O domínio e a hospedagem estão inclusos?</span>
+            <span class="faq-btn__icon">+</span>
+          </button>
+          <div class="faq-answer">Sim. O domínio e a hospedagem já estão inclusos no valor, sem cobrança adicional.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            <span class="faq-btn__text">O site fica no meu nome?</span>
+            <span class="faq-btn__icon">+</span>
+          </button>
+          <div class="faq-answer">Sim. O projeto é publicado no domínio e hospedagem do cliente, e todos os acessos são entregues no final.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            <span class="faq-btn__text">A página funciona bem no celular?</span>
+            <span class="faq-btn__icon">+</span>
+          </button>
+          <div class="faq-answer">Sim. A estrutura precisa funcionar muito bem no mobile, porque a maior parte dos acessos vem do celular.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            <span class="faq-btn__text">Posso usar essa página para anúncios?</span>
+            <span class="faq-btn__icon">+</span>
+          </button>
+          <div class="faq-answer">Sim. A landing page é pensada para receber tráfego pago com uma apresentação mais profissional e estratégica.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn" onclick="toggleFaq(this)">
+            <span class="faq-btn__text">Vocês entregam os acessos?</span>
+            <span class="faq-btn__icon">+</span>
+          </button>
+          <div class="faq-answer">Sim. Tudo é entregue pronto, com as senhas e acessos organizados.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta" id="comece">
+    <div class="final-cta__orb final-cta__orb--1"></div>
+    <div class="final-cta__orb final-cta__orb--2"></div>
+    <div class="final-cta__content">
+      <div class="section-label" style="justify-content:center;">Comece agora</div>
+      <h2 class="final-cta__title">Deixe sua empresa com uma apresentação mais profissional e pronta para <em style="font-family:'Playfair Display',serif;font-style:italic;color:transparent;background:linear-gradient(135deg,#a78bfa,#7b39fc);-webkit-background-clip:text;background-clip:text;">gerar mais contatos</em></h2>
+      <p class="final-cta__text">Tenha uma landing page criada para transmitir credibilidade, organizar sua oferta e facilitar o contato com quem chega até você.</p>
+      <div class="final-cta__actions">
+        <a href="https://wa.me/5541995524570?text=Olá! Quero saber mais sobre as landing pages." target="_blank" class="btn-primary" style="font-size:16px;padding:17px 32px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.55 4.1 1.516 5.827L.057 23.62a.75.75 0 0 0 .923.923l5.792-1.459A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.738 9.738 0 0 1-4.978-1.367l-.356-.212-3.693.931.949-3.594-.232-.369A9.712 9.712 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+          Falar no WhatsApp agora
+        </a>
+      </div>
+      <div class="final-cta__trust">
+        <div class="trust-item">Visual premium</div>
+        <div class="trust-item">Domínio e hospedagem inclusos</div>
+        <div class="trust-item">Entrega com acessos organizados</div>
+        <div class="trust-item">Pensada para mobile e tráfego pago</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <div class="footer__logo">Vibrance<span>.</span></div>
+        <p class="footer__desc">Landing pages profissionais, estratégicas e prontas para gerar contatos para profissionais liberais e empresas locais.</p>
+        <div class="footer__contacts">
+          <div class="footer__contact-item">📍 Curitiba/PR</div>
+          <div class="footer__contact-item">🌐 Atendimento para todo o Brasil</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="footer__copy">© 2025 Vibrance. Todos os direitos reservados.</div>
+      <div class="footer__copy">Feito com cuidado em Curitiba</div>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FLOAT -->
+  <a href="https://wa.me/5541995524570?text=Olá! Quero saber mais sobre as landing pages." target="_blank" class="wa-float" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.55 4.1 1.516 5.827L.057 23.62a.75.75 0 0 0 .923.923l5.792-1.459A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.738 9.738 0 0 1-4.978-1.367l-.356-.212-3.693.931.949-3.594-.232-.369A9.712 9.712 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+  </a>
+
+  <script>
+    // Navbar menu
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('open');
+    }
+
+    // FAQ
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
+    // Fade in on scroll
+    const fadeEls = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    fadeEls.forEach(el => observer.observe(el));
+
+    // Animate bars when visible
+    const barObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.dash-bar-fill').forEach(bar => {
+            bar.style.width = bar.style.getPropertyValue('--w') || getComputedStyle(bar).getPropertyValue('--w');
+          });
+          barObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.hero__dashboard').forEach(el => barObserver.observe(el));
+
+    // Animate bars on load
+    setTimeout(() => {
+      document.querySelectorAll('.dash-bar-fill').forEach(bar => {
+        const w = bar.getAttribute('style').match(/--w:([\d%]+)/)?.[1] || '80%';
+        bar.style.width = w;
+      });
+    }, 600);
+
+    // Mobile Carousels
+    const carousels = {
+      testimonials: { current: 0, total: 3, autoplay: null },
+      portfolio:    { current: 0, total: 4, autoplay: null }
+    };
+
+    function goToSlide(id, index) {
+      const c = carousels[id];
+      if (!c) return;
+      c.current = index;
+
+      const track = document.getElementById('track-' + id);
+      if (track) track.style.transform = 'translateX(-' + (index * 100) + '%)';
+
+      const slides = track ? track.querySelectorAll('.mobile-carousel__slide') : [];
+      slides.forEach((slide, i) => {
+        if (i === index) slide.classList.remove('inactive');
+        else slide.classList.add('inactive');
+      });
+
+      const dotsContainer = document.getElementById('dots-' + id);
+      if (dotsContainer) {
+        dotsContainer.querySelectorAll('.mobile-carousel__dot').forEach((dot, i) => {
+          dot.classList.toggle('active', i === index);
+        });
+      }
+
+      // restart autoplay timer on manual navigation
+      clearInterval(c.autoplay);
+      c.autoplay = setInterval(() => {
+        goToSlide(id, (c.current + 1) % c.total);
+      }, 4000);
+    }
+
+    // Start autoplay for each carousel
+    Object.keys(carousels).forEach(id => {
+      const c = carousels[id];
+      c.autoplay = setInterval(() => {
+        goToSlide(id, (c.current + 1) % c.total);
+      }, 4000);
+    });
+
+    // Touch/swipe support
+    document.querySelectorAll('.mobile-carousel').forEach(carousel => {
+      let startX = 0;
+      const id = carousel.id.replace('carousel-', '');
+      carousel.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+      carousel.addEventListener('touchend', e => {
+        const diff = startX - e.changedTouches[0].clientX;
+        const c = carousels[id];
+        if (!c) return;
+        if (Math.abs(diff) > 40) {
+          if (diff > 0) goToSlide(id, (c.current + 1) % c.total);
+          else goToSlide(id, (c.current - 1 + c.total) % c.total);
+        }
+      }, { passive: true });
+    });
+  </script>
+</body>
+</html>
